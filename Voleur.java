@@ -1,4 +1,8 @@
+import fr.emse.simulator.world.Cell;
 import fr.emse.simulator.world.Robber;
+
+import java.util.ArrayList;
+
 /**
  * Décrivez votre classe Voleur ici.
  *
@@ -13,12 +17,25 @@ public class Voleur extends Acteur implements Robber
     /**
      * Constructeur d'objets de classe Voleur
      */
-    public Voleur()
-    {
-        pieces = 0;
+    public Voleur() {
+        this.pieces = 0;
     }
-    
+
     public void setPieces() {
         pieces++;
+    }
+
+    @Override
+    public ArrayList<Cell> pathCible() {
+        if (pieces == 2){
+            return path(cellule, worldMap.getSorties());
+        } else{
+            return path(cellule, worldMap.getArgents());
+        }
+    }
+
+    @Override
+    public void deplacer() {
+        ArrayList<Cell> bestChemin = pathCible();
     }
 }

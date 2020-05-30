@@ -13,13 +13,20 @@ import java.util.*;
 
 public class WorldMap implements SimulationMap {
     private ArrayList<ArrayList<Cellule>> cells = new ArrayList<>();
-    private ArrayList<Cellule> voleurs = new ArrayList<>();
-    private ArrayList<Cellule> argents = new ArrayList<>();
-    private ArrayList<Cellule> drones = new ArrayList<>();
-    private ArrayList<Cellule> sorties = new ArrayList<>();
+    private HashSet<Cellule> voleurs = new HashSet<>();
+    private HashSet<Cellule> argents = new HashSet<>();
+    private HashSet<Cellule> drones = new HashSet<>();
+    private HashSet<Cellule> sorties = new HashSet<>();
     private int nbRows;
     private int nbCols;
-    
+
+    private static ArrayList<Class<? extends Occupant>> toIgnore = new ArrayList<Class<? extends Occupant>>();
+    private  AStarPathFinder solver = new AStarPathFinder(this, new EuclideanDistanceHeuristic(), new PreferEmptyCellsLocalCost(1, 3), toIgnore);
+
+    public WorldMap() {
+        toIgnore.add(Drone.class);
+    }
+
     public void addCell(int row, int col, char c){
         Cellule cellule;
         if (row == cells.size()) {
@@ -32,29 +39,48 @@ public class WorldMap implements SimulationMap {
         } else if (c == 'D') {
             Drone drone = new Drone();
             cellule = new Cellule (row, col, drone);
+            drone.setCellule(cellule);
+            drone.setWorldMap(this);
             cells.get(row).add(cellule);
+            drones.add(cellule);
         } else if (c == 'I') {
             Voleur vol = new Voleur();
             cellule = new Cellule (row, col, vol);
+            vol.setCellule(cellule);
+            vol.setWorldMap(this);
             cells.get(row).add(cellule);
+            voleurs.add(cellule);
         } else if (c == '$') {
             Argent money = new Argent();
             cellule = new Cellule (row, col, money);
             cells.get(row).add(cellule);
+            argents.add(cellule);
         } else if (c == '_') {
             cellule = new Cellule (row, col);
             cells.get(row).add(cellule);
         }
     }
     
-    public Cell get(int row, int col) {
+    public Cellule get(int row, int col) {
         return cells.get(row).get(col);
     }
     
-    public ArrayList getVoleurs() {
+    public HashSet<Cellule> getVoleurs() {
         return voleurs;
     }
-    
+
+    public HashSet<Cellule> getArgents() {
+        return argents;
+    }
+
+    public HashSet<Cellule> getDrones() {
+        return drones;
+    }
+
+    public HashSet<Cellule> getSorties() {
+        return sorties;
+    }
+
     public int getNbCols() {
         return nbCols;
     }
@@ -74,4 +100,9 @@ public class WorldMap implements SimulationMap {
     public void setNbCols(int cols) {
         nbCols = cols;
     }
+
+    public AStarPathFinder getSolver() {
+        return solver;
+    }
+
 }

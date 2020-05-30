@@ -56,12 +56,18 @@ public class ConfigLoader {
         }
     }
 
-    public static void load(WorldMap worldMap, File file){
-        addCoordonneCell(worldMap, ConfigLoader.read(file));
+    private static void setDimension(WorldMap worldMap){
+        worldMap.setNbCols(nbColonne);
+        worldMap.setNbRows(nbLigne);
     }
 
-   // public static void main(String[] args) {
-       // load(new WorldMap(), new File("niveauTest.txt"));
-   // }
+    public static void load(WorldMap worldMap, File file){
+        addCoordonneCell(worldMap, ConfigLoader.read(file));
+        setDimension(worldMap);
+    }
+
+//    public static void main(String[] args) {
+//        load(new WorldMap(), new File("niveauTest.txt"));
+//    }
 }
 

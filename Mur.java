@@ -5,7 +5,7 @@ import fr.emse.simulator.world.Wall;
  * @author (votre nom)
  * @version (un numéro de version ou une date)
  */
-public class Mur implements Wall
+public class Mur extends Occup implements Wall
 {
     // variables d'instance - remplacez l'exemple qui suit par le vôtre
     private int x;

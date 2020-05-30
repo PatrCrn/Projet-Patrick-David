@@ -2,61 +2,47 @@ import fr.emse.simulator.Simulator;
 import fr.emse.simulator.gui.MapFrame;
 
 import java.io.File;
-/**
- * Décrivez votre classe Simulateur ici.
- *
- * @author (votre nom)
- * @version (un numéro de version ou une date)
- */
-public class Simulateur extends Simulator
-{
-    private static final int SLEEP = 300;
-    private WorldMap monde;
-    private int pas;
 
-    /**
-     * Constructeur d'objets de classe Simulateur
-     */
-    public Simulateur(File fichier) {
-        super(fichier);
-        pas = 0;
+public class Simulateur extends Simulator {
+    private WorldMap worldMap;
+
+    public Simulateur(File file) {
+        super(file);
     }
 
-    /**
-     * Un exemple de méthode - remplacez ce commentaire par le vôtre
-     *
-     * @param  y   le paramètre de la méthode
-     * @return     la somme de x et de y
-     */
-    public boolean isOver()
-    {
-        return monde.getVoleurs().isEmpty();
+    @Override
+    public void loadMap(File file) {
+        worldMap = new WorldMap();
+        ConfigLoader.load(worldMap, file);
     }
-    
-    public void runOneStep()
-    {
-        
+
+    @Override
+    public void runOneStep() {
+
     }
-    
-    public void loadMap(File fichier) {
-        monde = new WorldMap();
-        ConfigLoader.load(monde, fichier);
+
+    @Override
+    public boolean isOver() {
+        return worldMap.getVoleurs().isEmpty();
     }
-    
+
+    public WorldMap getWorldMap() {
+        return worldMap;
+    }
+
+    @Override
     public void run() {
-        MapFrame frame = new MapFrame(monde);
-        frame.repaint(100);
-        while (!isOver()) {
+        MapFrame frame = new MapFrame(worldMap);
+        while (!isOver()){
+            frame.repaint(200);
             runOneStep();
-            frame.repaint(100);
         }
-        System.out.println("Le jeu est terminé!");
     }
-    
-    public static void main(String[] args){
-        File f = new File(args[0]);        
-        Simulateur sim = new Simulateur(f);
-        sim.run();        
-        System.exit(0);
+
+    public static void main(String[] args) {
+        File file = new File("niveauTest.txt");
+        Simulator simulator = new Simulateur(file);
+        simulator.loadMap(file);
+        simulator.run();
     }
 }

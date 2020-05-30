@@ -1,4 +1,8 @@
+import fr.emse.simulator.world.Cell;
 import fr.emse.simulator.world.Robot;
+
+import java.util.ArrayList;
+
 /**
  * Décrivez votre classe Drone ici.
  *
@@ -7,27 +11,15 @@ import fr.emse.simulator.world.Robot;
  */
 public class Drone extends Acteur implements Robot
 {
-    // variables d'instance - remplacez l'exemple qui suit par le vôtre
-    private int x;
 
-    /**
-     * Constructeur d'objets de classe Drone
-     */
-    public Drone()
-    {
-        // initialisation des variables d'instance
-        x = 0;
+
+    @Override
+    public ArrayList<Cell> pathCible() {
+        return path(cellule, worldMap.getVoleurs());
     }
 
-    /**
-     * Un exemple de méthode - remplacez ce commentaire par le vôtre
-     *
-     * @param  y   le paramètre de la méthode
-     * @return     la somme de x et de y
-     */
-    public int sampleMethod(int y)
-    {
-        // Insérez votre code ici
-        return x + y;
+    @Override
+    public void deplacer() {
+        ArrayList<Cell> bestChemin = pathCible();
     }
 }

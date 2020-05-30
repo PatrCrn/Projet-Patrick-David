@@ -8,29 +8,33 @@ import java.util.*;
  * @author (votre nom)
  * @version (un numéro de version ou une date)
  */
-public abstract class Acteur
+public abstract class Acteur extends Occup
 {
-    // variables d'instance - remplacez l'exemple qui suit par le vôtre
-    private int x;
+    protected Cellule cellule;
+    protected WorldMap worldMap;
 
-    /**
-     * Constructeur d'objets de classe Acteur
-     */
-    public Acteur()
-    {
-        // initialisation des variables d'instance
-        x = 0;
+    public ArrayList<Cell> path(Cellule position, HashSet<Cellule> cibles) {
+        Iterator<Cellule> iteratorCibles = cibles.iterator();
+        ArrayList<Cell> chemin = worldMap.getSolver().getShortestPath(position, iteratorCibles.next());
+
+        while (iteratorCibles.hasNext()){
+            ArrayList<Cell> newCible = worldMap.getSolver().getShortestPath(position, iteratorCibles.next());
+            if(newCible.size() < chemin.size()){
+                chemin = newCible;
+            }
+        }
+        return chemin;
     }
 
-    /**
-     * Un exemple de méthode - remplacez ce commentaire par le vôtre
-     *
-     * @param  y   le paramètre de la méthode
-     * @return     la somme de x et de y
-     */
-    public int sampleMethod(int y)
-    {
-        // Insérez votre code ici
-        return x + y;
+    abstract public ArrayList<Cell> pathCible();
+
+    abstract public void deplacer();
+
+    public void setCellule(Cellule cellule) {
+        this.cellule = cellule;
+    }
+
+    public void setWorldMap(WorldMap worldMap) {
+        this.worldMap = worldMap;
     }
 }

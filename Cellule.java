@@ -59,11 +59,7 @@ public class Cellule implements Cell
     
     public boolean isEmpty()
     {
-        if ( (occupant != null) && (occupant.getClass() == Voleur.class || occupant.getClass() == Drone.class)) 
-        {
-            return false;
-        }
-        return true;
+        return (occupant == null) || (occupant.getClass() != Voleur.class && occupant.getClass() != Drone.class);
     }
     
     public boolean equals(Object o) {
