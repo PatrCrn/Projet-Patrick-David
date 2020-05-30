@@ -58,11 +58,25 @@ public class WorldMap implements SimulationMap {
         } else if (c == '_') {
             cellule = new Cellule (row, col);
             cells.get(row).add(cellule);
+            if(row == nbRows || col == nbCols || row == 0 || col == 0) {
+                sorties.add(cellule);
+            }
         }
     }
     
     public Cellule get(int row, int col) {
         return cells.get(row).get(col);
+    }
+    
+    public ArrayList<ArrayList<Cellule>> getCells() {
+        return cells;
+    }
+    
+    public void set(int row, int col, Occupant occ) {
+        cells.get(row).get(col).setOccupant(occ);
+    }
+    public void set(int row, int col) {
+        cells.get(row).get(col).setOccupant();
     }
     
     public HashSet<Cellule> getVoleurs() {

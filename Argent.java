@@ -14,7 +14,7 @@ public class Argent extends Occup implements Coin
      */
     public Argent()
     {
-
+        
     }
 
 }

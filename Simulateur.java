@@ -1,6 +1,7 @@
 import fr.emse.simulator.Simulator;
 import fr.emse.simulator.gui.MapFrame;
 
+import java.util.ArrayList;
 import java.io.File;
 
 public class Simulateur extends Simulator {
@@ -18,7 +19,22 @@ public class Simulateur extends Simulator {
 
     @Override
     public void runOneStep() {
-
+        ArrayList<ArrayList<Cellule>> arrCells = worldMap.getCells();
+        for(int x = 0; x < arrCells.size(); x++) {
+            ArrayList<Cellule> arrCell = arrCells.get(x);
+            
+            for(int i = 0; i < arrCells.get(x).size(); i++) {
+                try{
+                    Class cla = arrCell.get(i).getOccupant().getClass();
+                    if(cla == Drone.class || cla == Voleur.class) {
+                        Acteur occ = (Acteur)worldMap.getCells().get(x).get(i).getOccupant();
+                        occ.deplacer();
+                    }
+                } catch (NullPointerException e) {
+                    continue;
+                }
+            }
+        }
     }
 
     @Override

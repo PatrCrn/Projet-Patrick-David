@@ -56,6 +56,10 @@ public class Cellule implements Cell
     {
         occupant = newOccupant;
     }
+    public void setOccupant()
+    {
+        occupant = null;
+    }
     
     public boolean isEmpty()
     {
