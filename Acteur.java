@@ -1,19 +1,22 @@
-import fr.emse.simulator.world.Wall;
+import fr.emse.simulator.astar.AStarPathFinder;
+import fr.emse.simulator.world.Cell;
+import fr.emse.simulator.world.Occupant;
+import java.util.*;
 /**
- * Décrivez votre classe Mur ici.
+ * Décrivez votre classe Acteur ici.
  *
  * @author (votre nom)
  * @version (un numéro de version ou une date)
  */
-public class Mur implements Wall
+public abstract class Acteur
 {
     // variables d'instance - remplacez l'exemple qui suit par le vôtre
     private int x;
 
     /**
-     * Constructeur d'objets de classe Mur
+     * Constructeur d'objets de classe Acteur
      */
-    public Mur()
+    public Acteur()
     {
         // initialisation des variables d'instance
         x = 0;

@@ -60,8 +60,8 @@ public class ConfigLoader {
         addCoordonneCell(worldMap, ConfigLoader.read(file));
     }
 
-//    public static void main(String[] args) {
-//        load(new WorldMap(), new File("niveauTest.txt"));
-//    }
+   // public static void main(String[] args) {
+       // load(new WorldMap(), new File("niveauTest.txt"));
+   // }
 }
 

@@ -1,19 +1,19 @@
-import fr.emse.simulator.world.Wall;
+import fr.emse.simulator.world.Robot;
 /**
- * Décrivez votre classe Mur ici.
+ * Décrivez votre classe Drone ici.
  *
  * @author (votre nom)
  * @version (un numéro de version ou une date)
  */
-public class Mur implements Wall
+public class Drone extends Acteur implements Robot
 {
     // variables d'instance - remplacez l'exemple qui suit par le vôtre
     private int x;
 
     /**
-     * Constructeur d'objets de classe Mur
+     * Constructeur d'objets de classe Drone
      */
-    public Mur()
+    public Drone()
     {
         // initialisation des variables d'instance
         x = 0;

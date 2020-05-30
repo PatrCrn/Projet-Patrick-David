@@ -1,19 +1,19 @@
-import fr.emse.simulator.world.Wall;
+import fr.emse.simulator.world.Coin;
 /**
- * Décrivez votre classe Mur ici.
+ * Décrivez votre classe Argent ici.
  *
  * @author (votre nom)
  * @version (un numéro de version ou une date)
  */
-public class Mur implements Wall
+public class Argent implements Coin
 {
     // variables d'instance - remplacez l'exemple qui suit par le vôtre
     private int x;
 
     /**
-     * Constructeur d'objets de classe Mur
+     * Constructeur d'objets de classe Argent
      */
-    public Mur()
+    public Argent()
     {
         // initialisation des variables d'instance
         x = 0;
