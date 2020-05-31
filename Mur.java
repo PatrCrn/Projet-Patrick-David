@@ -14,7 +14,7 @@ public class Mur extends Occup implements Wall
      */
     public Mur()
     {
-
+        
     }
 
 }

@@ -12,6 +12,7 @@ public abstract class Acteur extends Occup
 {
     protected Cellule cellule;
     protected WorldMap worldMap;
+    protected int pieces;
 
     public ArrayList<Cell> path(Cellule position, HashSet<Cellule> cibles) {
         Iterator<Cellule> iteratorCibles = cibles.iterator();
@@ -29,7 +30,6 @@ public abstract class Acteur extends Occup
                     chemin = newCible;
                 }
             }
-
         }
         return chemin;
     }
@@ -42,7 +42,10 @@ public abstract class Acteur extends Occup
     public void deplacer(){
         ArrayList<Cell> bestChemin = pathCible();
         if (bestChemin != null) {
-            Cell cell = bestChemin.get(1);
+            Cell cell = bestChemin.get(0);;
+            if(bestChemin.size() >= 2) {
+                cell = bestChemin.get(1);
+            }
             if (bestChemin.size() > 2) {
                 remove();
                 add((Cellule) cell);
@@ -63,5 +66,9 @@ public abstract class Acteur extends Occup
 
     public Cellule getCellule() {
         return cellule;
+    }
+    
+    public int getPieces() {
+        return pieces;
     }
 }

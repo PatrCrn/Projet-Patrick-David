@@ -11,14 +11,16 @@ import java.util.ArrayList;
  */
 public class Voleur extends Acteur implements Robber
 {
-    // variables d'instance - remplacez l'exemple qui suit par le vôtre
-    private int pieces;
+    private int attente;
+    private int tour;
 
     /**
      * Constructeur d'objets de classe Voleur
      */
     public Voleur() {
         this.pieces = 0;
+        attente = 0;
+        tour = 1;
     }
 
     public void setPieces() {
@@ -27,11 +29,29 @@ public class Voleur extends Acteur implements Robber
 
     @Override
     public ArrayList<Cell> pathCible() {
-        if (pieces == 2){
+        if (pieces == 2 || worldMap.getArgents().isEmpty()){
             return path(cellule, worldMap.getSorties());
         } else{
             return path(cellule, worldMap.getArgents());
         }
+    }
+    
+    public void deplacer(){
+        if(pieces == 0) {
+            super.deplacer();
+            return;
+        }
+        
+        if(tour == 1) {
+            super.deplacer();
+        } else if(pieces == 1 && tour == 2) {
+            super.deplacer();
+        } else if (tour == 3) {
+            tour = 1;
+            return;
+        }
+        attente++;
+        tour++;
     }
 
     @Override
@@ -53,52 +73,4 @@ public class Voleur extends Acteur implements Robber
             setPieces();
         }
     }
-
-    //    @Override
-//    public void deplacer() {
-//        ArrayList<Cell> bestChemin = pathCible();
-//
-//        for(Cellule c: worldMap.getVoleurs()) {
-//            if (c.equals(cellule)) {
-//                worldMap.getVoleurs().remove(c);
-//                break;
-//            }
-//        }
-//        worldMap.set(cellule.getRow(), cellule.getCol());
-//
-//        Cell cell = bestChemin.get(1);
-//        worldMap.set(cell.getRow(), cell.getCol(), this);
-//
-//        cellule = worldMap.get(cell.getRow(), cell.getCol());
-//
-//        verifVoisin(cellule.getRow(), cellule.getCol());
-//    }
-//
-//    private void verifVoisin(int row, int col) {
-//        if ((Class)worldMap.get(row-1, col-1).getClass() == Argent.class) {
-//            worldMap.set(row-1, col-1);
-//            setPieces();
-//        } else if ((Class)worldMap.get(row-1, col).getClass() == Argent.class) {
-//            worldMap.set(row-1, col);
-//            setPieces();
-//        } else if ((Class)worldMap.get(row-1, col+1).getClass() == Argent.class) {
-//            worldMap.set(row-1, col+1);
-//            setPieces();
-//        } else if ((Class)worldMap.get(row, col-1).getClass() == Argent.class) {
-//            worldMap.set(row, col-1);
-//            setPieces();
-//        } else if ((Class)worldMap.get(row, col+1).getClass() == Argent.class) {
-//            worldMap.set(row, col+1);
-//            setPieces();
-//        } else if ((Class)worldMap.get(row+1, col-1).getClass() == Argent.class) {
-//            worldMap.set(row+1, col-1);
-//            setPieces();
-//        } else if ((Class)worldMap.get(row+1, col).getClass() == Argent.class) {
-//            worldMap.set(row+1, col);
-//            setPieces();
-//        } else if ((Class)worldMap.get(row+1, col+1).getClass() == Argent.class) {
-//            worldMap.set(row+1, col+1);
-//            setPieces();
-//        }
-//    }
 }

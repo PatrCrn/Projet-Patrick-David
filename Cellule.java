@@ -35,26 +35,24 @@ public class Cellule implements Cell
     {
         return col;
     }
+    
     public int getRow()
     {
         return row;
     }
+    
     public Occup getOccupant()
     {
         return occup;
     }
     
-    public void setCol(int newCol)
-    {
-        col = newCol;
-    }
-    public void setRow(int newRow)
-    {
-        row = newRow;
-    }
     public void setOccupant(Occup newOccup)
     {
-        occup= newOccup;
+        if(occup == null) {
+            occup= newOccup;
+        } else if(!(newOccup.getClass() == Voleur.class && occup.getClass() == Drone.class)) {
+            occup= newOccup;
+        }
     }
     public void setOccupant()
     {
@@ -66,8 +64,6 @@ public class Cellule implements Cell
         return (occup == null);
     }
 
-
-    
     public boolean equals(Object o) {
         Cellule c = (Cellule) o;
         return row == c.getRow() && col == c.getCol() && occup == c.getOccupant();

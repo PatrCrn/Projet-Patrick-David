@@ -6,6 +6,8 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.Collections;
+import java.util.List;
 
 public class Simulateur extends Simulator {
     private WorldMap worldMap;
@@ -22,33 +24,25 @@ public class Simulateur extends Simulator {
 
     @Override
     public void runOneStep() {
-        for (Voleur voleur : worldMap.getVoleurs()) {
-            voleur.deplacer();
-        }
-        if (!worldMap.getCellVoleurs().isEmpty()) {
-            for (Drone drone : worldMap.getDrones()) {
-                drone.deplacer();
+        HashSet<Acteur> acteurs = new HashSet<>(worldMap.getVoleurs());
+        acteurs.addAll(worldMap.getDrones());
+        
+        List<Acteur> temp = new ArrayList<Acteur>(acteurs);
+        Collections.shuffle(temp);
+        acteurs.clear();
+        acteurs.addAll(temp);
+        
+        for(Acteur occ: acteurs) {
+            if(occ.getClass() == Drone.class) {
+                if (!worldMap.getCellVoleurs().isEmpty()) {
+                    occ.deplacer();
+                }
+            } else if(occ.getCellule().getOccupant() != null) {
+                occ.deplacer();
             }
         }
-
-//        ArrayList<ArrayList<Cellule>> arrCells = worldMap.getCells();
-//        for(int x = 0; x < arrCells.size(); x++) {
-//            ArrayList<Cellule> arrCell = arrCells.get(x);
-//
-//            for(int i = 0; i < arrCells.get(x).size(); i++) {
-//                try{
-//                    Class cla = arrCell.get(i).getOccupant().getClass();
-//                    if(cla == Drone.class || cla == Voleur.class) {
-//                        Acteur occ = (Acteur)worldMap.getCells().get(x).get(i).getOccupant();
-//                        occ.deplacer();
-//                    }
-//                } catch (NullPointerException e) {
-//                    continue;
-//                }
-//            }
-//        }
     }
-
+    
     @Override
     public boolean isOver() {
         return worldMap.getCellVoleurs().isEmpty();
