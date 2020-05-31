@@ -4,14 +4,15 @@ import fr.emse.simulator.world.Robber;
 import java.util.ArrayList;
 
 /**
- * Décrivez votre classe Voleur ici.
+ * Cette classe représente un voleur
+ * Il va chercher des pieces puis va tenter de s'enfuir avec vers une sortie
  *
- * @author (votre nom)
- * @version (un numéro de version ou une date)
+ * @author (David Abab, Patrick Corneo)
+ * @version (V1)
  */
 public class Voleur extends Acteur implements Robber
 {
-    private int attente;
+    //permettra de le ralentir si il porte trop de pièces
     private int tour;
 
     /**
@@ -20,19 +21,25 @@ public class Voleur extends Acteur implements Robber
     public Voleur(Cellule cellule, WorldMap worldMap) {
         super(cellule, worldMap);
         this.pieces = 0;
-        attente = 0;
         tour = 1;
     }
 
+    /**
+     *  Sert à déterminer le meilleure chemin aux cibles du voleur
+     * @return le meilleur chemin possible
+     */
     @Override
     public ArrayList<Cell> pathCible() {
         if (pieces == 2 || worldMap.getArgents().isEmpty()){
-            return path(cellule, worldMap.getSorties());
+            return path(worldMap.getSorties());
         } else{
-            return path(cellule, worldMap.getArgents());
+            return path(worldMap.getArgents());
         }
     }
-    
+
+    /**
+     * Permets d'ajuster le déplacement selon le nombre de pièce qu'il porte
+     */
     public void deplacer(){
         if(pieces == 0) {
             super.deplacer();
@@ -47,20 +54,30 @@ public class Voleur extends Acteur implements Robber
             tour = 1;
             return;
         }
-        attente++;
         tour++;
     }
 
+    /**
+     * Permets de supprimer le voleur du monde
+     */
     @Override
     public void remove() {
         worldMap.removeVoleur(this);
     }
 
+    /**
+     * Permet d'ajouter le voleur au modne
+     * @param newCell la cellule ou on veut que l'acteur s'ajoute
+     */
     @Override
     public void add(Cellule newCell) {
         worldMap.addVoleur(this, newCell);
     }
 
+    /**
+     * Permet aux voleurs de saisir les pièece ou de s'échapper
+     * @param cellule la cellule qu'on souhaite prendr
+     */
     @Override
     public void saisir(Cellule cellule) {
         if(pieces == 2 && worldMap.containsSortie(cellule)){

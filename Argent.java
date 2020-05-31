@@ -1,20 +1,11 @@
 import fr.emse.simulator.world.Coin;
 /**
- * Décrivez votre classe Argent ici.
+ * Cette classe représente une source d’argent (ou sac) recherchée par les intrus ;
  *
- * @author (votre nom)
- * @version (un numéro de version ou une date)
+ * @author (David Abab, Patrick Corneo)
+ * @version (V1)
  */
 public class Argent extends Occup implements Coin
 {
-
-
-    /**
-     * Constructeur d'objets de classe Argent
-     */
-    public Argent()
-    {
-        
-    }
 
 }

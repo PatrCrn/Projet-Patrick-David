@@ -1,12 +1,10 @@
 ------------------------------------------------------------------------
-Ceci est le fichier LISEZMOI (README) du projet.  Décrivez-y votre projet.
-Dites au lecteur (qui ne sait rien du projet) ce qu'il a besoin de savoir.
-Au minimum, remplissez cette description :
+Ceci est le fichier LISEZMOI (README) du projet.
 ------------------------------------------------------------------------
 
-TITRE DU PROJET :
-BUT POURSUIVI :
-VERSION ou DATE :
-COMMENT INVOQUER CE PROJET :
-AUTEURS :
-INSTRUCTIONS Ŕ L'USAGER :
+TITRE DU PROJET : simulation d'un cambriolage
+BUT POURSUIVI : Simuler un monde où des voleurs volent et des drones les pourchassent
+VERSION ou DATE : version 1
+COMMENT INVOQUER CE PROJET : lancer le main de simulateur et donner le fichier (string) en argument
+AUTEURS : David Abab et Patrick Corneo
+INSTRUCTIONS Ŕ L'USAGER : installer bien la librairie (le .jar) et liser la documentation

@@ -1,10 +1,14 @@
 #BlueJ class context
 comment0.target=Drone
 comment0.text=\r\n\ D\u00E9crivez\ votre\ classe\ Drone\ ici.\r\n\r\n\ @author\ (votre\ nom)\r\n\ @version\ (un\ num\u00E9ro\ de\ version\ ou\ une\ date)\r\n
-comment1.params=
-comment1.target=java.util.ArrayList\ pathCible()
+comment1.params=cellule\ worldMap
+comment1.target=Drone(Cellule,\ WorldMap)
 comment2.params=
-comment2.target=void\ deplacer()
-comment3.params=row\ col
-comment3.target=void\ verifVoisin(int,\ int)
-numComments=4
+comment2.target=java.util.ArrayList\ pathCible()
+comment3.params=
+comment3.target=void\ remove()
+comment4.params=newCell
+comment4.target=void\ add(Cellule)
+comment5.params=cell
+comment5.target=void\ saisir(Cellule)
+numComments=6

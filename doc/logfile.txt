@@ -1,0 +1,159 @@
+Project documentation
+<---- javadoc command: ---->
+C:\Program Files\BlueJ\jdk\bin\javadoc.exe
+-sourcepath
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master
+-source
+11
+-classpath
+C:\Program Files\BlueJ\lib\bluejcore.jar;C:\Program Files\BlueJ\lib\junit-4.11.jar;C:\Program Files\BlueJ\lib\hamcrest-core-1.3.jar;C:\Program Files\BlueJ\lib\lang-stride.jar;C:\Program Files\BlueJ\lib\javafx\lib\javafx.base.jar;C:\Program Files\BlueJ\lib\javafx\lib\javafx.controls.jar;C:\Program Files\BlueJ\lib\javafx\lib\javafx.fxml.jar;C:\Program Files\BlueJ\lib\javafx\lib\javafx.graphics.jar;C:\Program Files\BlueJ\lib\javafx\lib\javafx.media.jar;C:\Program Files\BlueJ\lib\javafx\lib\javafx.properties.jar;C:\Program Files\BlueJ\lib\javafx\lib\javafx.swing.jar;C:\Program Files\BlueJ\lib\javafx\lib\javafx.web.jar;C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master
+-d
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\doc
+-encoding
+UTF-8
+-charset
+UTF-8
+-doctitle
+631-1-PROG-632-1-Projet-Patrick-David-master
+-windowtitle
+631-1-PROG-632-1-Projet-Patrick-David-master
+-author
+-version
+-nodeprecated
+-package
+-Xdoclint:none
+-link
+https://docs.oracle.com/en/java/javase/11/docs/api/
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master/Voleur.java
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master/Cellule.java
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master/Simulateur.java
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master/Acteur.java
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master/Argent.java
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master/ConfigLoader.java
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master/WorldMap.java
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master/Drone.java
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master/Mur.java
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master/Occup.java
+<---- end of javadoc command ---->
+Loading source file C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Voleur.java...
+Loading source file C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Cellule.java...
+Loading source file C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Simulateur.java...
+Loading source file C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Acteur.java...
+Loading source file C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Argent.java...
+Loading source file C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\ConfigLoader.java...
+Loading source file C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\WorldMap.java...
+Loading source file C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Drone.java...
+Loading source file C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Mur.java...
+Loading source file C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Occup.java...
+Constructing Javadoc information...
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Voleur.java:1: error: package fr.emse.simulator.world does not exist
+import fr.emse.simulator.world.Cell;
+                              ^
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Voleur.java:2: error: package fr.emse.simulator.world does not exist
+import fr.emse.simulator.world.Robber;
+                              ^
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Acteur.java:1: error: package fr.emse.simulator.world does not exist
+import fr.emse.simulator.world.Cell;
+                              ^
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Occup.java:1: error: package fr.emse.simulator.world does not exist
+import fr.emse.simulator.world.Occupant;
+                              ^
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Occup.java:10: error: cannot find symbol
+public class Occup implements Occupant {
+                              ^
+  symbol: class Occupant
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Voleur.java:13: error: cannot find symbol
+public class Voleur extends Acteur implements Robber
+                                              ^
+  symbol: class Robber
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Cellule.java:1: error: package fr.emse.simulator.world does not exist
+import fr.emse.simulator.world.Cell;
+                              ^
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Cellule.java:9: error: cannot find symbol
+public class Cellule implements Cell
+                                ^
+  symbol: class Cell
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\WorldMap.java:1: error: package fr.emse.simulator.astar does not exist
+import fr.emse.simulator.astar.AStarPathFinder;
+                              ^
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\WorldMap.java:2: error: package fr.emse.simulator.astar does not exist
+import fr.emse.simulator.astar.EuclideanDistanceHeuristic;
+                              ^
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\WorldMap.java:3: error: package fr.emse.simulator.astar does not exist
+import fr.emse.simulator.astar.PreferEmptyCellsLocalCost;
+                              ^
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\WorldMap.java:4: error: package fr.emse.simulator.world does not exist
+import fr.emse.simulator.world.Occupant;
+                              ^
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\WorldMap.java:5: error: package fr.emse.simulator.world does not exist
+import fr.emse.simulator.world.SimulationMap;
+                              ^
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\WorldMap.java:16: error: cannot find symbol
+public class WorldMap implements SimulationMap {
+                                 ^
+  symbol: class SimulationMap
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Voleur.java:32: error: cannot find symbol
+    public ArrayList<Cell> pathCible() {
+                     ^
+  symbol:   class Cell
+  location: class Voleur
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Drone.java:1: error: package fr.emse.simulator.world does not exist
+import fr.emse.simulator.world.Cell;
+                              ^
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Drone.java:2: error: package fr.emse.simulator.world does not exist
+import fr.emse.simulator.world.Robot;
+                              ^
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Drone.java:13: error: cannot find symbol
+public class Drone extends Acteur implements Robot
+                                             ^
+  symbol: class Robot
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\WorldMap.java:33: error: cannot find symbol
+    private AStarPathFinder solver;
+            ^
+  symbol:   class AStarPathFinder
+  location: class WorldMap
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\WorldMap.java:266: error: cannot find symbol
+    public AStarPathFinder getSolver() {
+           ^
+  symbol:   class AStarPathFinder
+  location: class WorldMap
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Drone.java:28: error: cannot find symbol
+    public ArrayList<Cell> pathCible() {
+                     ^
+  symbol:   class Cell
+  location: class Drone
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Acteur.java:37: error: cannot find symbol
+    public ArrayList<Cell> path(HashSet<Cellule> cibles) {
+                     ^
+  symbol:   class Cell
+  location: class Acteur
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Acteur.java:61: error: cannot find symbol
+    abstract public ArrayList<Cell> pathCible();
+                              ^
+  symbol:   class Cell
+  location: class Acteur
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Simulateur.java:1: error: package fr.emse.simulator does not exist
+import fr.emse.simulator.Simulator;
+                        ^
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Simulateur.java:2: error: package fr.emse.simulator.gui does not exist
+import fr.emse.simulator.gui.MapFrame;
+                            ^
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Simulateur.java:24: error: cannot find symbol
+public class Simulateur extends Simulator {
+                                ^
+  symbol: class Simulator
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Argent.java:1: error: package fr.emse.simulator.world does not exist
+import fr.emse.simulator.world.Coin;
+                              ^
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Argent.java:8: error: cannot find symbol
+public class Argent extends Occup implements Coin
+                                             ^
+  symbol: class Coin
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Mur.java:1: error: package fr.emse.simulator.world does not exist
+import fr.emse.simulator.world.Wall;
+                              ^
+C:\Users\gyanm\Desktop\Projet java\631-1-PROG-632-1-Projet-Patrick-David-master\Mur.java:8: error: cannot find symbol
+public class Mur extends Occup implements Wall
+                                          ^
+  symbol: class Wall
+30 errors

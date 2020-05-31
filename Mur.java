@@ -1,20 +1,11 @@
 import fr.emse.simulator.world.Wall;
 /**
- * Décrivez votre classe Mur ici.
+ * Cette classe représente des barrières (ou murs) qui ne peuvent être traversées par les entités.
  *
- * @author (votre nom)
- * @version (un numéro de version ou une date)
+ * @author (David Abab, Patrick Corneo)
+ * @version (V1)
  */
 public class Mur extends Occup implements Wall
 {
-
-
-    /**
-     * Constructeur d'objets de classe Mur
-     */
-    public Mur()
-    {
-        
-    }
 
 }

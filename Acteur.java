@@ -1,32 +1,47 @@
-import fr.emse.simulator.astar.AStarPathFinder;
 import fr.emse.simulator.world.Cell;
-import fr.emse.simulator.world.Occupant;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+
 /**
- * Décrivez votre classe Acteur ici.
+ * Cette classe représente un acteur du monde
+ * Il peut se déplacer et intéragir avec d'autres occupants
  *
- * @author (votre nom)
- * @version (un numéro de version ou une date)
+ * @author (David Abab, Patrick Corneo)
+ * @version (V1)
  */
 public abstract class Acteur extends Occup
 {
+    // la cellule et le monde ou le monde appatient
     protected Cellule cellule;
     protected WorldMap worldMap;
+    // le nombre de pièces qu'à l'acteur
     protected int pieces;
-    
+
+    /**
+     * Le constructeur
+     * @param cellule la cellule où l'acteur est l'occupant
+     * @param worldMap le monde ou l'acteur appartient
+     */
     public Acteur(Cellule cellule, WorldMap worldMap) {
         this.cellule = cellule;
         this.worldMap = worldMap;
     }
 
-    public ArrayList<Cell> path(Cellule position, HashSet<Cellule> cibles) {
+    /**
+     * Permets d'établir le meilleure chemin selon l'objectif le plus proche
+     * @param cibles l'ensemble des cibles que l'acteur poursuit pour le moment
+     * @return le meilleur chemin possible
+     */
+    public ArrayList<Cell> path(HashSet<Cellule> cibles) {
         Iterator<Cellule> iteratorCibles = cibles.iterator();
         ArrayList<Cell> chemin = new ArrayList<Cell>();
         if(iteratorCibles.hasNext()) {
-            chemin = worldMap.getSolver().getShortestPath(position, iteratorCibles.next());
+            chemin = worldMap.getSolver().getShortestPath(cellule, iteratorCibles.next());
         }
         while (iteratorCibles.hasNext()){
-            ArrayList<Cell> newCible = worldMap.getSolver().getShortestPath(position, iteratorCibles.next());
+            ArrayList<Cell> newCible = worldMap.getSolver().getShortestPath(cellule, iteratorCibles.next());
             if (newCible != null){
                 if(chemin == null){
                     chemin = newCible;
@@ -39,11 +54,32 @@ public abstract class Acteur extends Occup
         return chemin;
     }
 
+    /**
+     *  Sert à déterminer le meilleure chemin par rapport aux cibles de l'acteur
+     * @return le meilleur chemin possible
+     */
     abstract public ArrayList<Cell> pathCible();
+
+    /**
+     *  Permets d'ajouter l'acteur à une nouvelle cellule
+     * @param newCell la cellule ou on veut que l'acteur s'ajoute
+     */
     abstract public void add(Cellule newCell);
+
+    /**
+     * Permets de retirer l'acteur de sa cellule actuelle
+     */
     abstract public void remove();
+
+    /**
+     * Permet de prendre un autre occupant
+     * @param cellule la cellule qu'on souhaite prendr
+     */
     abstract public void saisir(Cellule cellule);
 
+    /**
+     * Permet d'effectuer un déplacement sur le monde en changeant de cellule
+     */
     public void deplacer(){
         ArrayList<Cell> bestChemin = pathCible();
         if (bestChemin != null) {
@@ -61,26 +97,41 @@ public abstract class Acteur extends Occup
         }
     }
 
+    /**
+     *  Permets de changer la cellule de l'acteur
+     * @param cellule la cellule qu'on souhaite changer
+     */
     public void setCellule(Cellule cellule) {
         this.cellule = cellule;
     }
 
-    public void setWorldMap(WorldMap worldMap) {
-        this.worldMap = worldMap;
-    }
-
+    /**
+     * Permets d'obtenir la cellule actuel de l'acteur
+     * @return
+     */
     public Cellule getCellule() {
         return cellule;
     }
-    
+
+    /**
+     * Permet de rajouter une piece
+     */
     public void setPieces() {
         pieces++;
     }
-    
+
+    /**
+     * Permets de rajouter une certaine somme de piece
+     * @param p le nb de piece qu'on souhaite rajouter
+     */
     public void setPieces(int p) {
         pieces += p;
     }
-    
+
+    /**
+     * Permets d'obtenir le nombre de piece qu'à l'acteur
+     * @return le nombre de piece qu'à l'acteur
+     */
     public int getPieces() {
         return pieces;
     }
