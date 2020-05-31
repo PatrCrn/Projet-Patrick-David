@@ -35,49 +35,70 @@ public class Voleur extends Acteur implements Robber
     }
 
     @Override
-    public void deplacer() {
-        ArrayList<Cell> bestChemin = pathCible();
-        for(Cellule c: worldMap.getVoleurs()) {
-            if (c.equals(cellule)) {
-                worldMap.getVoleurs().remove(c);
-                break;
-            }
-        }
-        worldMap.set(cellule.getRow(), cellule.getCol());
-        
-        Cell cell = bestChemin.get(1);
-        worldMap.set(cell.getRow(), cell.getCol(), this);
-        
-        cellule = worldMap.get(cell.getRow(), cell.getCol());
-        
-        verifVoisin(cellule.getRow(), cellule.getCol());
+    public void remove() {
+        worldMap.removeVoleur(this);
     }
-    
-    private void verifVoisin(int row, int col) {
-        if ((Class)worldMap.get(row-1, col-1).getClass() == Argent.class) {
-            worldMap.set(row-1, col-1);
-            setPieces();
-        } else if ((Class)worldMap.get(row-1, col).getClass() == Argent.class) {
-            worldMap.set(row-1, col);
-            setPieces();
-        } else if ((Class)worldMap.get(row-1, col+1).getClass() == Argent.class) {
-            worldMap.set(row-1, col+1);
-            setPieces();
-        } else if ((Class)worldMap.get(row, col-1).getClass() == Argent.class) {
-            worldMap.set(row, col-1);
-            setPieces();
-        } else if ((Class)worldMap.get(row, col+1).getClass() == Argent.class) {
-            worldMap.set(row, col+1);
-            setPieces();
-        } else if ((Class)worldMap.get(row+1, col-1).getClass() == Argent.class) {
-            worldMap.set(row+1, col-1);
-            setPieces();
-        } else if ((Class)worldMap.get(row+1, col).getClass() == Argent.class) {
-            worldMap.set(row+1, col);
-            setPieces();
-        } else if ((Class)worldMap.get(row+1, col+1).getClass() == Argent.class) {
-            worldMap.set(row+1, col+1);
+
+    @Override
+    public void add(Cellule newCell) {
+        worldMap.addVoleur(this, newCell);
+    }
+
+    @Override
+    public void saisir(Cellule cellule) {
+        if(pieces == 2 && worldMap.containsSortie(cellule)){
+            remove();
+        } else {
+            worldMap.removePiece(cellule);
             setPieces();
         }
     }
+
+    //    @Override
+//    public void deplacer() {
+//        ArrayList<Cell> bestChemin = pathCible();
+//
+//        for(Cellule c: worldMap.getVoleurs()) {
+//            if (c.equals(cellule)) {
+//                worldMap.getVoleurs().remove(c);
+//                break;
+//            }
+//        }
+//        worldMap.set(cellule.getRow(), cellule.getCol());
+//
+//        Cell cell = bestChemin.get(1);
+//        worldMap.set(cell.getRow(), cell.getCol(), this);
+//
+//        cellule = worldMap.get(cell.getRow(), cell.getCol());
+//
+//        verifVoisin(cellule.getRow(), cellule.getCol());
+//    }
+//
+//    private void verifVoisin(int row, int col) {
+//        if ((Class)worldMap.get(row-1, col-1).getClass() == Argent.class) {
+//            worldMap.set(row-1, col-1);
+//            setPieces();
+//        } else if ((Class)worldMap.get(row-1, col).getClass() == Argent.class) {
+//            worldMap.set(row-1, col);
+//            setPieces();
+//        } else if ((Class)worldMap.get(row-1, col+1).getClass() == Argent.class) {
+//            worldMap.set(row-1, col+1);
+//            setPieces();
+//        } else if ((Class)worldMap.get(row, col-1).getClass() == Argent.class) {
+//            worldMap.set(row, col-1);
+//            setPieces();
+//        } else if ((Class)worldMap.get(row, col+1).getClass() == Argent.class) {
+//            worldMap.set(row, col+1);
+//            setPieces();
+//        } else if ((Class)worldMap.get(row+1, col-1).getClass() == Argent.class) {
+//            worldMap.set(row+1, col-1);
+//            setPieces();
+//        } else if ((Class)worldMap.get(row+1, col).getClass() == Argent.class) {
+//            worldMap.set(row+1, col);
+//            setPieces();
+//        } else if ((Class)worldMap.get(row+1, col+1).getClass() == Argent.class) {
+//            worldMap.set(row+1, col+1);
+//            setPieces();
+//        }
+//    }
 }

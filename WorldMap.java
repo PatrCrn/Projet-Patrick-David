@@ -4,27 +4,27 @@ import fr.emse.simulator.astar.Heuristic;
 import fr.emse.simulator.astar.LocalCost;
 import fr.emse.simulator.astar.PreferEmptyCellsLocalCost;
 
-import fr.emse.simulator.world.Cell;
-import fr.emse.simulator.world.Coin;
-import fr.emse.simulator.world.Occupant;
-import fr.emse.simulator.world.SimulationMap;
+import fr.emse.simulator.world.*;
 
 import java.util.*;
 
 public class WorldMap implements SimulationMap {
     private ArrayList<ArrayList<Cellule>> cells = new ArrayList<>();
-    private HashSet<Cellule> voleurs = new HashSet<>();
+    private HashSet<Cellule> cellVoleurs = new HashSet<>();
     private HashSet<Cellule> argents = new HashSet<>();
-    private HashSet<Cellule> drones = new HashSet<>();
+    private HashSet<Cellule> cellDrones = new HashSet<>();
     private HashSet<Cellule> sorties = new HashSet<>();
     private int nbRows;
     private int nbCols;
 
-    private static ArrayList<Class<? extends Occupant>> toIgnore = new ArrayList<Class<? extends Occupant>>();
-    private  AStarPathFinder solver = new AStarPathFinder(this, new EuclideanDistanceHeuristic(), new PreferEmptyCellsLocalCost(1, 3), toIgnore);
+    private HashSet<Voleur> voleurs = new HashSet<>();
+    private HashSet<Drone> drones = new HashSet<>();
+
+    private AStarPathFinder solver;
+
 
     public WorldMap() {
-        toIgnore.add(Drone.class);
+
     }
 
     public void addCell(int row, int col, char c){
@@ -42,14 +42,16 @@ public class WorldMap implements SimulationMap {
             drone.setCellule(cellule);
             drone.setWorldMap(this);
             cells.get(row).add(cellule);
-            drones.add(cellule);
+            drones.add(drone);
+            cellDrones.add(cellule);
         } else if (c == 'I') {
             Voleur vol = new Voleur();
             cellule = new Cellule (row, col, vol);
             vol.setCellule(cellule);
             vol.setWorldMap(this);
             cells.get(row).add(cellule);
-            voleurs.add(cellule);
+            voleurs.add(vol);
+            cellVoleurs.add(cellule);
         } else if (c == '$') {
             Argent money = new Argent();
             cellule = new Cellule (row, col, money);
@@ -63,7 +65,31 @@ public class WorldMap implements SimulationMap {
             }
         }
     }
-    
+
+    public void addDrone(Drone drone, Cellule cellule){
+        set(cellule, drone);
+        drone.setCellule(cellule);
+    }
+    public void removeDrone(Drone drone){
+        set(drone.getCellule());
+    }
+
+    public void addVoleur(Voleur voleur, Cellule cellule){
+        cellVoleurs.add(cellule);
+        set(cellule, voleur);
+        voleur.setCellule(cellule);
+
+    }
+
+    public void removeVoleur(Voleur voleur){
+        cellVoleurs.remove(voleur.getCellule());
+        set(voleur.getCellule());
+    }
+
+    public void removePiece( Cellule argentCell){
+        argents.remove(argentCell);
+    }
+
     public Cellule get(int row, int col) {
         return cells.get(row).get(col);
     }
@@ -72,14 +98,14 @@ public class WorldMap implements SimulationMap {
         return cells;
     }
     
-    public void set(int row, int col, Occupant occ) {
-        cells.get(row).get(col).setOccupant(occ);
+    public void set(Cellule cellule, Occup occ) {
+        cellule.setOccupant(occ);
     }
-    public void set(int row, int col) {
-        cells.get(row).get(col).setOccupant();
+    public void set(Cellule cellule) {
+        cellule.setOccupant();
     }
     
-    public HashSet<Cellule> getVoleurs() {
+    public HashSet<Voleur> getVoleurs() {
         return voleurs;
     }
 
@@ -87,12 +113,20 @@ public class WorldMap implements SimulationMap {
         return argents;
     }
 
-    public HashSet<Cellule> getDrones() {
+    public HashSet<Drone> getDrones() {
         return drones;
     }
 
     public HashSet<Cellule> getSorties() {
         return sorties;
+    }
+
+    public HashSet<Cellule> getCellDrones() {
+        return cellDrones;
+    }
+
+    public HashSet<Cellule> getCellVoleurs() {
+        return cellVoleurs;
     }
 
     public int getNbCols() {
@@ -119,4 +153,13 @@ public class WorldMap implements SimulationMap {
         return solver;
     }
 
+    public boolean containsSortie(Cellule cellule){
+        return sorties.contains(cellule);
+    }
+
+    public void setSolver() {
+        ArrayList<Class<? extends Occupant>> toIgnore = new ArrayList<Class<? extends Occupant>>();
+        toIgnore.add(Drone.class);
+        this.solver = new AStarPathFinder(this, new EuclideanDistanceHeuristic(), new PreferEmptyCellsLocalCost(1, 5), toIgnore);;
+    }
 }

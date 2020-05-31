@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Simulateur
+comment1.params=file
+comment1.target=Simulateur(java.io.File)
+comment2.params=file
+comment2.target=void\ loadMap(java.io.File)
+comment3.params=
+comment3.target=void\ runOneStep()
+comment4.params=
+comment4.target=boolean\ isOver()
+comment5.params=
+comment5.target=WorldMap\ getWorldMap()
+comment6.params=
+comment6.target=void\ run()
+comment7.params=args
+comment7.target=void\ main(java.lang.String[])
+numComments=8

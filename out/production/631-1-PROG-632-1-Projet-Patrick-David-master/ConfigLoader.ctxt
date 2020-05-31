@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=ConfigLoader
+comment0.text=\r\n\ Cette\ classe\ sert\ \u00E0\r\n
+comment1.params=fileName
+comment1.target=java.util.ArrayList\ read(java.io.File)
+comment2.params=worldMap\ lignes
+comment2.target=void\ addCoordonneCell(WorldMap,\ java.util.ArrayList)
+comment3.params=collones
+comment3.target=void\ verifTropDecollonnes(java.lang.String)
+comment4.params=lignes
+comment4.target=void\ verifTropDelignes(java.util.ArrayList)
+comment5.params=worldMap
+comment5.target=void\ setDimension(WorldMap)
+comment6.params=worldMap\ file
+comment6.target=void\ load(WorldMap,\ java.io.File)
+numComments=7

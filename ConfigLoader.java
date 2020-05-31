@@ -59,6 +59,7 @@ public class ConfigLoader {
     private static void setDimension(WorldMap worldMap){
         worldMap.setNbCols(nbColonne);
         worldMap.setNbRows(nbLigne);
+        worldMap.setSolver();
     }
 
     public static void load(WorldMap worldMap, File file){

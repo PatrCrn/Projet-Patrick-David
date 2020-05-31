@@ -8,18 +8,18 @@ import fr.emse.simulator.world.Occupant;
  */
 public class Cellule implements Cell
 {
-    private Occupant occupant;
+    private Occup occup;
     private int row;
     private int col;
 
     /**
      * Constructeur d'objets de classe Cellule
      */
-    public Cellule(int row, int col, Occupant occupant)
+    public Cellule(int row, int col, Occup occup)
     {
         this.row = row;
         this.col = col;
-        this.occupant = occupant;
+        this.occup = occup;
     }
     
     public Cellule(int row, int col)
@@ -39,9 +39,9 @@ public class Cellule implements Cell
     {
         return row;
     }
-    public Occupant getOccupant()
+    public Occup getOccupant()
     {
-        return occupant;
+        return occup;
     }
     
     public void setCol(int newCol)
@@ -52,22 +52,24 @@ public class Cellule implements Cell
     {
         row = newRow;
     }
-    public void setOccupant(Occupant newOccupant)
+    public void setOccupant(Occup newOccup)
     {
-        occupant = newOccupant;
+        occup= newOccup;
     }
     public void setOccupant()
     {
-        occupant = null;
+        occup = null;
     }
     
     public boolean isEmpty()
     {
-        return (occupant == null) || (occupant.getClass() != Voleur.class && occupant.getClass() != Drone.class);
+        return (occup == null);
     }
+
+
     
     public boolean equals(Object o) {
         Cellule c = (Cellule) o;
-        return row == c.getRow() && col == c.getCol() && occupant == c.getOccupant();
+        return row == c.getRow() && col == c.getCol() && occup == c.getOccupant();
     }
 }
