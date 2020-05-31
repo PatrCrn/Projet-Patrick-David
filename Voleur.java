@@ -17,14 +17,11 @@ public class Voleur extends Acteur implements Robber
     /**
      * Constructeur d'objets de classe Voleur
      */
-    public Voleur() {
+    public Voleur(Cellule cellule, WorldMap worldMap) {
+        super(cellule, worldMap);
         this.pieces = 0;
         attente = 0;
         tour = 1;
-    }
-
-    public void setPieces() {
-        pieces++;
     }
 
     @Override

@@ -21,38 +21,14 @@ public class WorldMap implements SimulationMap {
     private AStarPathFinder solver;
 
     public void addCell(int row, int col, char c){
-        Cellule cellule = new Cellule(row ,col);
         if (row == cells.size()) {
             cells.add(new ArrayList<Cellule>());
         }
-        if (c == '#') {
-            Mur mur = new Mur();
-            cellule = new Cellule (row, col, mur);
-        } else if (c == 'D') {
-            Drone drone = new Drone();
-            cellule = new Cellule (row, col, drone);
-            drone.setCellule(cellule);
-            drone.setWorldMap(this);
-            drones.add(drone);
-            cellDrones.add(cellule);
-        } else if (c == 'I') {
-            Voleur vol = new Voleur();
-            cellule = new Cellule (row, col, vol);
-            vol.setCellule(cellule);
-            vol.setWorldMap(this);
-            voleurs.add(vol);
-            cellVoleurs.add(cellule);
-        } else if (c == '$') {
-            Argent money = new Argent();
-            cellule = new Cellule (row, col, money);
-            argents.add(cellule);
-        } else if (c == '_') {
-            cellule = new Cellule (row, col);
-            if(row == nbRows || col == nbCols || row == 0 || col == 0) {
-                sorties.add(cellule);
-            }
-        }
-        cells.get(row).add(cellule);
+        Cellule cellule = new Cellule(row ,col, c, this);
+    }
+    
+    public void setCell(int row, Cellule cel) {
+        cells.get(row).add(cel);
     }
 
     public void addDrone(Drone drone, Cellule cellule){
@@ -64,9 +40,13 @@ public class WorldMap implements SimulationMap {
     }
 
     public void addVoleur(Voleur voleur, Cellule cellule){
-        cellVoleurs.add(cellule);
-        set(cellule, voleur);
-        voleur.setCellule(cellule);
+        if(cellule.getOccupant() == null) {
+            cellVoleurs.add(cellule);
+            set(cellule, voleur);
+            voleur.setCellule(cellule);
+        } else {
+            ((Drone)cellule.getOccupant()).setPieces(voleur.getPieces());
+        }
     }
 
     public void removeVoleur(Voleur voleur){
@@ -128,6 +108,30 @@ public class WorldMap implements SimulationMap {
     public void setNbCols(int cols) {
         nbCols = cols;
     }
+    
+    public void setDrones(Drone drone) {
+        drones.add(drone);
+    }
+    
+    public void setCellDrones(Cellule cellule) {
+        cellDrones.add(cellule);
+    }
+    
+    public void setVoleurs(Voleur vol) {
+        voleurs.add(vol);
+    }
+    
+    public void setCellVoleurs(Cellule cellule) {
+        cellVoleurs.add(cellule);
+    }
+    
+    public void setArgents(Cellule cellule) {
+        argents.add(cellule);
+    }
+    
+    public void setSorties(Cellule cellule) {
+        sorties.add(cellule);
+    }
 
     public AStarPathFinder getSolver() {
         return solver;
@@ -140,6 +144,6 @@ public class WorldMap implements SimulationMap {
     public void setSolver() {
         ArrayList<Class<? extends Occupant>> toIgnore = new ArrayList<Class<? extends Occupant>>();
         toIgnore.add(Drone.class);
-        this.solver = new AStarPathFinder(this, new EuclideanDistanceHeuristic(), new PreferEmptyCellsLocalCost(1, 5), toIgnore);;
+        this.solver = new AStarPathFinder(this, new EuclideanDistanceHeuristic(), new PreferEmptyCellsLocalCost(1, 5), toIgnore);
     }
 }

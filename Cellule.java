@@ -15,17 +15,44 @@ public class Cellule implements Cell
     /**
      * Constructeur d'objets de classe Cellule
      */
-    public Cellule(int row, int col, Occup occup)
+    public Cellule(int row, int col, char c, WorldMap world)
     {
         this.row = row;
         this.col = col;
-        this.occup = occup;
+        initOccupant(c, world);
     }
     
     public Cellule(int row, int col)
     {
         this.row = row;
         this.col = col;
+    }
+    
+    public void initOccupant(char c, WorldMap world) {
+        if (c == '#') {
+            Mur mur = new Mur();
+            occup = mur;
+        } else if (c == 'D') {
+            Drone drone = new Drone(this, world);
+            occup = drone;
+            world.setDrones(drone);
+            world.setCellDrones(this);
+        } else if (c == 'I') {
+            Voleur vol = new Voleur(this, world);
+            occup = vol;
+            world.setVoleurs(vol);
+            world.setCellVoleurs(this);
+        } else if (c == '$') {
+            Argent money = new Argent();
+            occup = money;
+            world.setArgents(this);
+        } else if (c == '_') {
+            setOccupant();
+            if(row == world.getNbRows() || col == world.getNbCols() || row == 0 || col == 0) {
+                world.setSorties(this);
+            }
+        }
+        world.setCell(row, this);
     }
 
     /**

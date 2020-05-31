@@ -12,6 +12,9 @@ import java.util.HashSet;
  */
 public class Drone extends Acteur implements Robot
 {
+    public Drone(Cellule cellule, WorldMap worldMap) {
+        super(cellule, worldMap);
+    }
     
     @Override
     public ArrayList<Cell> pathCible() {
